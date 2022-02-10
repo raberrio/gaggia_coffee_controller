@@ -30,6 +30,9 @@ Note that controlling an inductive load (ulka pump is basically a solenoid with 
 
 Last part is to let the controller know when you push the pump "on" switch. For that, i installed a "220V voltage detector" connected to the pump power line and neutral line. It gives an optocoupled logic signal which is read by a DI pin on the controller.
 
+### Wiring
+I used silicone insulated wires, 16AWG for power and 22AWG for control inside the machine, with spade connectors. Inside the controller case i used flat ribbon cable with dupont connectors.
+
 ## User Interface
 For user interface i am using the home assistant frontend. i configured a page where i can set the parameters when i need to. Parameters that i can set are:
 - Boiler temperature set point
