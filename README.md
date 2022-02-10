@@ -29,3 +29,12 @@ To actuate over the pump I installed a Triac based controller board (Robotdyn AC
 Note that controlling an inductive load (ulka pump is basically a solenoid with a spring) require some additional considerations in order to prevent injecting noise to the circuit and keep small electronics safe.
 
 Last part is to let the controller know when you push the pump "on" switch. For that, i installed a "220V voltage detector" connected to the pump power line and neutral line. It gives an optocoupled logic signal which is read by a DI pin on the controller.
+
+## User Interface
+For user interface i am using the home assistant frontend. i configured a page where i can set the parameters when i need to. Parameters that i can set are:
+- Boiler temperature set point
+- Preinfusion time
+- Preinfusion pressure
+- Brew pressure
+
+Also i can deactivate the boiler heating element if i want it.
