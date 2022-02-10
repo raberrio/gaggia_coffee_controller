@@ -24,6 +24,8 @@ Like the thermostat, boiler control is always ON since the machine is turned on.
 ### Pump Control
 For pump control, i am not replacing anything of stock machine but adding things. First i am controlling the pump by pressure. I installed a pressure transducer 300 PSI after the pumo outlet. I disconnected the pump hose and installed a 3 way connector, with a hose that runs to the pressure transducer. Pressure sensor gives analog signal, which i read with an external ADS1115 board with i2c communication. I am not using the esp8266 adc, because ads1115 is faster, more accurate and gives you 4 ports for future expansion. I connected the ADS1115 to same i2c bus that connects the OLED screen.
 
+To actuate over the pump I installed a Triac based controller board (Robotdyn AC dimmer 8A 400V) between the power line and pump. Triac is fired by the controller based on a zero-cross detection signal of Robotdyn board and a value given by a PID controlled which is reading the pressure, running in the controller. To prevent damage to Triac because high dV/dt and false triggers, i installed a RC snubber in parallel to the gate to protect it.
 
+Note that controlling an inductive load (ulka pump is basically a solenoid with a spring) require some additional considerations in order to prevent injecting noise to the circuit and keep small electronics safe.
 
-I installed a Triac based controller board (Robotdyn AC dimmer 8A 400V) between the power line and pump. Triac is fired by the controller
+Last part is to let the controller know when you push the pump "on" switch. For that, i installed a "220V voltage detector" connected to the pump power line and neutral line. It gives an optocoupled logic signal which is read by a DI pin on the controller.
