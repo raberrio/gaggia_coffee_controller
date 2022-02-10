@@ -10,3 +10,8 @@ Also i am using Homeassistant in my home, i designed the UI there so i can acces
 
 ## Hardware
 As i decided to use esphome, i started using a WEMOS D1 MINI board with a ESP8266 chip. The rest of the hardware were been selected based on if it were supported in esphome or not.
+
+### Core controller
+For core controller i choosed a WEMOS D1 mini board. For display data, i am using a 0,96 dual color OLED screen with SSD1306 chip, i2c bus communication. Main power is provided by a HiLink 220V to 5VDC box with is connected to wemos usb port (it did not support direct power pin connection).
+
+### Boiler control
