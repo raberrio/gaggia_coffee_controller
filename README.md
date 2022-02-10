@@ -15,3 +15,10 @@ As i decided to use esphome, i started using a WEMOS D1 MINI board with a ESP826
 For core controller i choosed a WEMOS D1 mini board. For display data, i am using a 0,96 dual color OLED screen with SSD1306 chip, i2c bus communication. Main power is provided by a HiLink 220V to 5VDC box with is connected to wemos usb port (it did not support direct power pin connection).
 
 ### Boiler control
+For boiler control, i am replacing the boiler coffee thermostat with a M4 PT100 3-wire thermocouple. To read the PT100 i am using a MAX31865 board with SPI communication. This is connected to the main controller over the SPI bus.
+
+Thermostat power terminals are connected to a SSR 40-DA, solid state relay with zerocross function. This is important to ensure a smooth on and off to the boiler. SSR is driven by a esp relay board without the relay ( XD ) just because i was too lazy to do a proper driver with a transistor. Controller is driving that relay board with a slow PWM, controlling the SSR. The PWM value is set by a PID controller running in controller software.
+
+Like the thermostat, boiler control is always ON since the machine is turned on.
+
+### Pump Control
