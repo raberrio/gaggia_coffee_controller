@@ -22,3 +22,8 @@ Thermostat power terminals are connected to a SSR 40-DA, solid state relay with 
 Like the thermostat, boiler control is always ON since the machine is turned on.
 
 ### Pump Control
+For pump control, i am not replacing anything of stock machine but adding things. First i am controlling the pump by pressure. I installed a pressure transducer 300 PSI after the pumo outlet. I disconnected the pump hose and installed a 3 way connector, with a hose that runs to the pressure transducer. Pressure sensor gives analog signal, which i read with an external ADS1115 board with i2c communication. I am not using the esp8266 adc, because ads1115 is faster, more accurate and gives you 4 ports for future expansion. I connected the ADS1115 to same i2c bus that connects the OLED screen.
+
+
+
+I installed a Triac based controller board (Robotdyn AC dimmer 8A 400V) between the power line and pump. Triac is fired by the controller
