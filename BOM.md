@@ -4,4 +4,9 @@
 |	---	|	---	|	---	|	---
 |	FOTEK SSR-40DA Authentic original SOLID STATE RELAY 40A	|	Solid State Relay for boiler control	|	1	|	https://a.aliexpress.com/_mrz6zug
 |	High Precision PT100 Temperature Sensor Class A RTD Probe M4 Brass Screw Thread 6mm 3-Core FEP Wire 750mm for Coffee Machine	|	Temperature sensor for boiler	|	1	|	https://a.aliexpress.com/_mr6Z0xi
-|	MAX31865 PT100/PT1000 RTD-to-Digital Converter Board Temperature Thermocouple Sensor Amplifier Module 3.3V/5V	|	Temperature board for sensor and digital communication	|	1	|	https://a.aliexpress.com/_msfwZgg![image](https://user-images.githubusercontent.com/59516085/153528742-3ffa53c6-8c96-422f-a9ec-c1edcdd3c9aa.png)
+|	MAX31865 PT100/PT1000 RTD-to-Digital Converter Board Temperature Thermocouple Sensor Amplifier Module 3.3V/5V	|	Temperature board for sensor and digital communication	|	1	|	https://a.aliexpress.com/_msfwZgg
+
+|	Item	|	Description	|	Qty	|	Link
+|	---	|	---	|	---	|	---
+|	Wemos D1 Mini V3.0.0 WIFI Internet of Things Development Board Based ESP8266 CH340 CH340G 4MB For Arduino Nodemcu V2 MicroPython	|	Main controller board	|	1	|	https://a.aliexpress.com/_m0IDSoc
+|	Manufacturer of PM01 / PM03 / PM09 / PM12 / PM24 Hi Link 3.3V 5V 9V 12V 24V ac dc power supply	|	Power supply 5V	|	1	|	https://a.aliexpress.com/_mPXuc88
