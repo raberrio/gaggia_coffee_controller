@@ -4,6 +4,7 @@
 |	---	|	---	|	---	|	---
 |	Wemos D1 Mini V3.0.0 WIFI Internet of Things Development Board Based ESP8266 CH340 CH340G 4MB For Arduino Nodemcu V2 MicroPython	|	Main controller board	|	1	|	https://a.aliexpress.com/_m0IDSoc
 |	Manufacturer of PM01 / PM03 / PM09 / PM12 / PM24 Hi Link 3.3V 5V 9V 12V 24V ac dc power supply	|	Power supply 5V	|	1	|	https://a.aliexpress.com/_mPXuc88
+|	0.96 inch OLED IIC Serial White Display Module 128X64 I2C SSD1306 12864 LCD Screen Board GND VCC SCL SDA 0.96" for Arduino Black	|	Screen. 4 pin for i2c, yellow blue	|	1	|	https://a.aliexpress.com/_mqwkWwo
 
 ### BOILER
 
