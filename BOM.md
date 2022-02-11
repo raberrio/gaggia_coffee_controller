@@ -22,3 +22,11 @@
 |	RC Absorption/Snubber Circuit Module Relay Contact Protection Resistance Surge	|	RC snubber for TRIAC protection	|	1	|	https://a.aliexpress.com/_mritBWk
 |	ADS1115 16-Bit ADCs 4-Channel Analog-to-Digital Ad Conversion Module Adjustable	|	External ADC for pressure sensor	|	1	|	https://a.aliexpress.com/_mOa2C2C
 |	1-Bit AC 220V Optocoupler Isolation Module Voltage Detect Board Adaptive For PLC	|	Pump switch detector	|	1	|	https://a.aliexpress.com/_mM2iWvQ
+|	DC 5V 1/8NPT Pressure Transducer Transmitter Sensor Stainless Steel Oil Air Water 30/100/150/200/300/500 psi	|	Pressure sensor. 300 psi	|	1	|	https://a.aliexpress.com/_mqnPKRi
+
+### MISC						
+
+|	Item	|	Description	|	Qty	|	Link
+|	---	|	---	|	---	|	---
+|	1M Food Grade Silicone Tube 4 6 8 10 12 16 20 28mm Out Diameter Flexible Rubber Hose Milk Hose Beer Pipe	|	Hose for pressure sensor. 4x9	|	1	|	https://a.aliexpress.com/_mMCmfSy
+|	Free shipping High Quality 10 PCS Stainless Steel 304 Single Ear Hose Clamps Assortment Kit Single	|	Clamps for hose	|	10	|	https://a.aliexpress.com/_msdQJ0s
