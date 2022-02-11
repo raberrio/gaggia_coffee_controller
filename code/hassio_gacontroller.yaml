@@ -1,0 +1,33 @@
+input_number:
+  gaggia_preinfusion_time:
+    name: Tiempo preinfusión
+    min: 0
+    max: 20
+    step: 1
+    icon: mdi:timer-outline
+    unit_of_measurement: s
+  gaggia_preinfusion_pressure:
+    name: Presión preinfusión
+    min: 1
+    max: 4
+    step: 0.5
+    icon: mdi:gauge-low
+    unit_of_measurement: bar
+  gaggia_brew_pressure:
+    name: Presión extracción
+    min: 6.5
+    max: 12
+    step: 0.5
+    icon: mdi:gauge-full
+    unit_of_measurement: bar
+  gaggia_brew_temperature:
+    name: Temperatura extracción
+    min: 86
+    max: 100
+    step: 1
+    icon: mdi:thermometer
+    unit_of_measurement: °C
+input_boolean:
+  gaggia_preinfusion_sw:
+    name: Preinfusión
+    icon: mdi:gauge-low
