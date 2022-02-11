@@ -12,3 +12,12 @@
 |	FOTEK SSR-40DA Authentic original SOLID STATE RELAY 40A	|	Solid State Relay for boiler control	|	1	|	https://a.aliexpress.com/_mrz6zug
 |	High Precision PT100 Temperature Sensor Class A RTD Probe M4 Brass Screw Thread 6mm 3-Core FEP Wire 750mm for Coffee Machine	|	Temperature sensor for boiler	|	1	|	https://a.aliexpress.com/_mr6Z0xi
 |	MAX31865 PT100/PT1000 RTD-to-Digital Converter Board Temperature Thermocouple Sensor Amplifier Module 3.3V/5V	|	Temperature board for sensor and digital communication	|	1	|	https://a.aliexpress.com/_msfwZgg
+
+### PUMP
+
+|	Item	|	Description	|	Qty	|	Link
+|	---	|	---	|	---	|	---
+|	AC Light lamp dimming and motor Dimmer Module, 1 Channel, 3.3V/5V logic, AC 50/60hz, 220V/110V - 600V	|	TRIAC for pump control. Select 8a-400V	|	1	|	https://a.aliexpress.com/_mL1ymdI
+|	RC Absorption/Snubber Circuit Module Relay Contact Protection Resistance Surge	|	RC snubber for TRIAC protection	|	1	|	https://a.aliexpress.com/_mritBWk
+|	ADS1115 16-Bit ADCs 4-Channel Analog-to-Digital Ad Conversion Module Adjustable	|	External ADC for pressure sensor	|	1	|	https://a.aliexpress.com/_mOa2C2C
+|	1-Bit AC 220V Optocoupler Isolation Module Voltage Detect Board Adaptive For PLC	|	Pump switch detector	|	1	|	https://a.aliexpress.com/_mM2iWvQ
