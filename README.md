@@ -8,6 +8,9 @@ The software is written in a yaml file which uses the ESPHOME platform. It is a 
 
 Also i am using Homeassistant in my home, i designed the UI there so i can access through my phone, tablet, pc or whatever. I use graphana plugins to analyze data if i need (tuning controllers or checking new features) and influxDB to store data.
 
+You can join me in discord to share your thoughts or ask something:
+https://discord.gg/KR6nZmeU
+
 ## Hardware
 As i decided to use esphome, i started using a WEMOS D1 MINI board with a ESP8266 chip. The rest of the hardware were been selected based on if it were supported in esphome or not.
 
