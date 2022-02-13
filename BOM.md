@@ -1,3 +1,7 @@
+## Bill Of Materials
+
+This is the list of materials I used for the first version of this mod. Probably i will do some modifications in the future but this list can perform well for the initial functionalities such as basic preinfusion and brew pressure control. It is stable and i have been testing it for 1 year with no issues.
+
 ### CORE CONTROLLER
 
 |	Item	|	Description	|	Qty	|	Link
