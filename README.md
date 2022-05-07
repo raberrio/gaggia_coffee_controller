@@ -1,5 +1,7 @@
-# gaggia_coffee_controller
-This is my personal approach to make a controller for Gaggia Classic coffee machine. I have designed it from scratch integrating standard parts that can be found online. It main goal is to control boiler temperature and pump pressure, but actually i am adding more features as i have the time to implement it.
+# Coffee Controller
+This is my personal approach to make a controller for coffee machines. My first application was on my Gaggia Classic, now I moved the mod to a Rancilio Silvia Pro. I have designed it from scratch integrating standard parts that can be found online. It main goal is to control boiler temperature and pump pressure, but actually i am adding more features as i have the time to implement it.
+
+This project is based on ESPHOME and HOME ASSISTANT. Hardware and implementation is very standard and can be used with other software/coding options like arduino IDE, but you will only find documentation here for the ESPHOME approach.
 
 You can join me in discord to share your thoughts or ask something:
 
