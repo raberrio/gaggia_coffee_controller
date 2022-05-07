@@ -13,21 +13,44 @@ esphome:
                 state: 140
       - sensor.template.publish:
                 id: brew_temp
-                state: 93
+                state: 96
       - if:
           condition: 
-            binary_sensor.is_on: bomba_gaggia #debug mode
+       #           binary_sensor.is_on: bomba_gaggia #debug mode
+            binary_sensor.is_on: steam_switch #debug mode
           then:
             - climate.control:
                 id: pid_boiler
                 mode: "OFF" 
 
+external_components:
+  - source: my_components
+
 # Enable logging
 logger:
+  level: DEBUG
+  logs:
+    pid.autotune: DEBUG
+    sensor: INFO
+    climate: INFO
+    ads1115: INFO
 
 # Enable Home Assistant API
+api:
+  password: 
 
-# deleted wifi credentials
+ota:
+  password: 
+
+wifi:
+  ssid: 
+  password: 
+  #  use_address: 192.168.2.65
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Gaggia-Controller32"
+    password: 
+
 captive_portal:
 
 time:
@@ -67,14 +90,18 @@ climate:
     default_target_temperature: 9
     heat_output: triac_bomba
     id: pid_bomba
-    control_parameters: #no overshoot PID 0.06
-      kp: 0.01824
-      ki: 0.04573
-      kd: 0.00455
+    control_parameters:
+      kp: 0.02012 # 0.04023 #0,12070
+      ki: 0.10766 # 0.21531 #0,64594
+      kd: 0.00235 # 0.00470 #0,01410
     visual:
       min_temperature: 6.5
       max_temperature: 12
       temperature_step: 0.5
+  #   control_parameters: #no overshoot PID 0.06 standard
+  #     kp: 0.01824
+  #     ki: 0.04573
+  #     kd: 0.00455
       
 output:
   - platform: slow_pwm
@@ -88,8 +115,9 @@ output:
       number: GPIO33
       mode: INPUT_PULLUP
       inverted: yes
-    min_power: 0.6
-      
+   #    min_power: 0.6
+    method: DS_MODULATOR_HALF
+
 switch:
   - platform: template
     name: "PID Boiler Autotune"
@@ -100,25 +128,21 @@ switch:
   - platform: template
     name: "PID Bomba Autotune"
     turn_on_action:
+      - climate.control:
+          id: pid_bomba
+          mode: "HEAT_COOL"
       - climate.pid.autotune:
           id: pid_bomba
-          positive_output: 0.06
-      
+          positive_output: 60%
+    turn_off_action:
+      - climate.control:
+          id: pid_bomba
+          mode: "OFF"
+    
 ads1115:
   - address: 0x48
 
 sensor:
-  - platform: homeassistant
-    id: preinf_sw_ha
-    entity_id: input_boolean.gaggia_preinfusion_sw
-    on_value:
-      if:
-        condition:
-          api.connected:
-        then:
-         - globals.set:
-             id: preinf_enabled
-             value: !lambda return id(preinf_sw_ha).state;
   - platform: homeassistant
     id: preinf_pres_ha
     entity_id: input_number.gaggia_preinfusion_pressure
@@ -162,10 +186,10 @@ sensor:
         then:
           - sensor.template.publish:
               id: brew_temp
-              state: !lambda return id(brew_temp_ha).state;
-#          - climate.control:
-#              id: pid_boiler
-#              target_temperature: !lambda return id(brew_temp_ha).state;
+              state: !lambda return id(brew_temp_ha).state + 14;
+   #          - climate.control:
+   #              id: pid_boiler
+   #              target_temperature: !lambda return id(brew_temp_ha).state;
   - platform: homeassistant
     id: steam_temp_ha
     entity_id: input_number.gaggia_steam_temperature
@@ -218,11 +242,11 @@ sensor:
           - climate.control:
               id: pid_boiler
               target_temperature: !lambda return id(steam_temp).state;
-#  - platform: pid
-#    name: "PID Heat action"
-#    type: HEAT
-#    id: heat_pid
-#    climate_id: pid_boiler
+   #  - platform: pid
+   #    name: "PID Heat action"
+   #    type: HEAT
+   #    id: heat_pid
+   #    climate_id: pid_boiler
   - platform: pid
     type: ERROR
     id: error_boiler_pid
@@ -275,6 +299,9 @@ sensor:
   - platform: pulse_meter
     pin: GPIO04
     name: Water flow
+    filters:
+      - lambda: return x * (10.0 / 2736.0);
+    unit_of_measurement: "ml/s"
 
 globals:
   - id: pulling_shot_start_time
@@ -297,6 +324,10 @@ globals:
     type: bool
     restore_value: no
     initial_value: 'false'
+  - id: decline_enabled
+    type: bool
+    restore_value: no
+    initial_value: 'false'
   - id: preinf_reset
     type: bool
     restore_value: no
@@ -313,7 +344,8 @@ binary_sensor:
       then:
         - if:
             condition:
-               lambda: 'return id(preinf_enabled);'
+              binary_sensor.is_on: preinf_sw_temp
+   #             lambda: 'return id(preinf_enabled);'
             then:
               - climate.control:
                   id: pid_bomba
@@ -355,15 +387,51 @@ binary_sensor:
         - climate.control:
               id: pid_boiler
               target_temperature: !lambda return id(brew_temp).state;
+  - platform: homeassistant
+    id: preinf_sw_ha
+    entity_id: input_boolean.gaggia_preinfusion_sw
+    on_state:
+      if:
+        condition:
+          api.connected:
+        then:
+          - binary_sensor.template.publish:
+              id: preinf_sw_temp
+              state: !lambda return id(preinf_sw_ha).state;
+   #         - globals.set:
+   #             id: preinf_enabled
+   #             value: !lambda return id(preinf_sw_ha).state;
+  - platform: homeassistant
+    id: decline_sw_ha
+    entity_id: input_boolean.gaggia_decline_sw
+    on_state:
+      if:
+        condition:
+          api.connected:
+        then:
+          - binary_sensor.template.publish:
+              id: decline_sw_temp
+              state: !lambda return id(decline_sw_ha).state;
+   #         - globals.set:
+   #             id: decline_enabled
+   #             value: !lambda return id(decline_sw_ha).state;
+  - platform: template
+    name: "Preinfusion activada"
+    id: preinf_sw_temp
+    internal: true
+  - platform: template
+    name: "Declive activado"
+    id: decline_sw_temp
+    internal: true
             
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
-#    reset_pin: D4
+   #    reset_pin: D4
     address: 0x3C
     update_interval: 0.05s
     lambda: |-
-      if ( id(preinf_enabled) and id(bomba_gaggia).state ){
+      if ( id(preinf_sw_temp).state and id(bomba_gaggia).state ){
         if ( id(preinf_reset) and millis() >= ( id(pulling_shot_start_time) + id(preinf_time).state * 1000)){
           auto call = id(pid_bomba).make_call();
           call.set_target_temperature( id(brew_pres).state );
@@ -386,14 +454,14 @@ display:
         it.print(0, 0, id(arial14), "Desactivado");
       }
       if (id(bomba_gaggia).state and id(boiler_temp).state < 115) {
-        it.printf(0,16,id(arial14), "%.1f C at %.1f bar", id(boiler_temp).state, id(pump_pressure).state);
+        it.printf(0,16,id(arial14), "%.1f C at %.1f bar", (id(boiler_temp).state-14), id(pump_pressure).state);
         it.printf(0, 35, id(arial30), "%.0f s", static_cast< double >(millis()-id(pulling_shot_start_time)) / 1000 );
-      } else if ( id(first_pull) and ( ( millis() - id(pulling_shot_end_time) ) < 5000 ) ){
-        it.printf(0,16,id(arial14), "Temp: %.1f C", id(boiler_temp).state);
+      } else if ( id(first_pull) and ( ( millis() - id(pulling_shot_end_time) ) < 7000 ) ){
+        it.printf(0,16,id(arial14), "Temp: %.1f C", (id(boiler_temp).state-14));
         it.printf(0, 35, id(arial30), "%.1f", static_cast< double >(id(pulling_shot_end_time)-id(pulling_shot_start_time)) / 1000);
       } else {
-        it.printf(0,16,id(arial14), "SP: %.1f C", id(pid_boiler).target_temperature);
-        it.printf(0, 35, id(arial30), "%.1f C",id(boiler_temp).state);
+        it.printf(0,16,id(arial14), "SP: %.1f C", (id(pid_boiler).target_temperature-14));
+        it.printf(0, 35, id(arial30), "%.1f C", (id(boiler_temp).state-14));
       } 
 
 font:
@@ -403,4 +471,3 @@ font:
   - file: "Arial.ttf"
     id: arial14
     size: 14
-    
